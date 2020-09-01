@@ -2,6 +2,7 @@ package Beans;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,7 +67,9 @@ public class BookBeen implements Serializable {
         
         try {
             
-            Connection con = DBConnection.getConnection();
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/onlinebookstore","root","admin");
+            
             PreparedStatement stmt;
             stmt = con.prepareStatement("INSERT INTO book(name,author,description,uprice) values(?,?,?,?)");
             stmt.setString(1,Name);
@@ -80,6 +83,8 @@ public class BookBeen implements Serializable {
             
         } catch (SQLException ex) {
             Logger.getLogger(BookBeen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(BookBeen.class.getName()).log(Level.SEVERE, null, ex);
         }
             
     }
@@ -88,7 +93,8 @@ public class BookBeen implements Serializable {
         
         try {
 
-            Connection con = DBConnection.getConnection();
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/onlinebookstore","root","admin");
 
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM book WHERE name=?");
             stmt.setString(1,name);
@@ -103,6 +109,8 @@ public class BookBeen implements Serializable {
 
             throwables.printStackTrace();
 
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(BookBeen.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
             
