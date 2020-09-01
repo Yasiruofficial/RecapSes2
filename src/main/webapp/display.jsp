@@ -33,9 +33,9 @@
                     String author = rs.getString("author");
                     float uprice = Float.parseFloat(rs.getString("uprice"));
                     String qty = (String)request.getAttribute("qty");
+                    
                     float Fqty = Float.parseFloat(qty);
 
-                    
                     out.print("<table align=\"center\">");
                     out.print("<tr>");
                         out.print("<td>"); out.print("Name"); out.print("<td>");
