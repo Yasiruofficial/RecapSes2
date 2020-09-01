@@ -25,13 +25,17 @@ public class addToCart extends HttpServlet {
         
             String name = request.getParameter("Name");
             String qty = request.getParameter("qty");
-            
+            String colour = request.getParameter("colour");
+            String[] size = request.getParameterValues("size");
+
             BookBeen book = new BookBeen();
             
             ResultSet rs = book.addToCart(name);
             
             request.setAttribute("ResultSet", rs);
             request.setAttribute("qty", qty);
+            request.setAttribute("colour", colour);
+            request.setAttribute("size", size);
             
             request.getRequestDispatcher("/display.jsp").forward(request, response);
             

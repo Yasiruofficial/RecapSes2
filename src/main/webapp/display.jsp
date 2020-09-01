@@ -33,8 +33,10 @@
                     String author = rs.getString("author");
                     float uprice = Float.parseFloat(rs.getString("uprice"));
                     String qty = (String)request.getAttribute("qty");
+                    String colour = (String)request.getAttribute("colour");
+                    String[] size = (String[])request.getAttribute("size");
                     
-                    float Fqty = Float.parseFloat(qty);
+                    float Fqty = Float.parseFloat(qty); 
 
                     out.print("<table align=\"center\">");
                     out.print("<tr>");
@@ -62,8 +64,20 @@
                         out.print("<td>"); out.print(Fqty * uprice); out.print("<td>");
                     out.print("</tr>");
                     
-                    out.print("</table>");
-    
+                    out.print("</table><br><br>");
+                   
+                    out.print("<center>");
+                    
+                    out.print("Selected Colour is " + colour);
+                    out.print("<br>");
+                    
+                    out.print("Selected Sizes are ");
+                    
+                    for(int i = 0;i < size.length;i++ ){
+                        out.print(size[i] +" , ");
+                    }
+                    
+                    out.print("</center>");
                     }  
                 } catch (SQLException ex) {
                     
